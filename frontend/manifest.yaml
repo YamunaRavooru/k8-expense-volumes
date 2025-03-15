@@ -101,6 +101,11 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "150m"
+        volumeMounts:
+        - name: nginx
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+          readOnly: true    
       volumes:
       - name: nginx
         configMap:
@@ -108,11 +113,7 @@ spec:
           items:
             - key: nginx.conf
               path: nginx.conf
-      volumeMounts:
-        - name: nginx
-          mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf
-          readOnly: true         
+           
 ---
 kind: Service
 apiVersion: v1
